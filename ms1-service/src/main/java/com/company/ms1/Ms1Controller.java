@@ -2,7 +2,7 @@ package com.company.ms1;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,7 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 public class Ms1Controller {
     Environment env;
 
-    @Autowired public Ms1Controller(Environment env) { this.env = env; }
+    //@Autowired 
+    public Ms1Controller(Environment env) { this.env = env; }
 
     @GetMapping("/welcome")
     public String welcome() { return "..... ms1 service....."; }
