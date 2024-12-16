@@ -1,0 +1,16 @@
+server:
+#  port: 0
+   port: 8082
+
+Spring:
+  application:
+    name: ms2-service
+
+eureka:
+#  instance:
+#    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: true
