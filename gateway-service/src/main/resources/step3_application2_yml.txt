@@ -1,0 +1,30 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+Spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: ms1
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/ms1-service/**
+          filters:
+            - AddRequestHeader=ms1-request, ms1-request-header2
+            - AddResponseHeader=ms1-response, ms1-response-header2
+        - id: ms2
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/ms2-service/**
+          filters:
+            - AddRequestHeader=ms2-request, ms2-request-header2
+            - AddResponseHeader=ms2-response, ms2-response-header2
