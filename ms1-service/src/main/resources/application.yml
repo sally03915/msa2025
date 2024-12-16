@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+Spring:
+  application:
+    name: ms1-service
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
