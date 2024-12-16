@@ -1,15 +1,19 @@
 package com.company.userservice.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.company.userservice.dto.UserDto;
 import com.company.userservice.jpa.UserEntity;
 import com.company.userservice.jpa.UserRepository;
+import com.company.userservice.vo.ResponseOrder;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,5 +47,26 @@ public class UserServiceImpl implements UserService {
 
         return returnUserDto;
     }
-}
+	
+	   @Override
+	    public UserDto getUserByUserId(String userId) {
+	        UserEntity userEntity = userRepository.findByUserId(userId);
 
+	        if (userEntity == null)
+	            throw new UsernameNotFoundException("User not found");
+
+	        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+	        List<ResponseOrder> orders= new ArrayList<>();
+	        userDto.setOrders(orders);
+
+	        return userDto;
+	    }
+
+	    @Override
+	    public Iterable<UserEntity> getUserByAll() {
+	        return userRepository.findAll();
+	    }	
+	
+	
+}
+ 
