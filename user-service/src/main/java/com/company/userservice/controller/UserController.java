@@ -25,7 +25,8 @@ import com.company.userservice.vo.ResponseUser;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/user-service")
+//@RequestMapping("/user-service")
+@RequestMapping("/")
 @Slf4j
 public class UserController {
 	@Autowired
